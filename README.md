@@ -134,14 +134,21 @@
 ## 7. How much money does the company spend every month on salaries for each department? [table: employee]
 
 -- Expected Result
-----------------------
+
 -- +--------+--------------+
+
 -- | deptno | total_salary |
+
 -- +--------+--------------+
+
 -- |     10 |     20700.00 |
+
 -- |     20 |     12300.00 |
+
 -- |     30 |      1675.00 |
+
 -- +--------+--------------+
+
 -- 3 rows in set (0.002 sec)
 
     select deptno,
