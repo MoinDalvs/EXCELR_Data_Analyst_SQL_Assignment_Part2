@@ -30,6 +30,20 @@
     
 -- a. How many students have graduated with first class?
 
+	select *
+		from (  select *,
+			       CASE
+				   WHEN marks BETWEEN 40 AND 49.99 THEN 'Third CLass'
+				   WHEN marks BETWEEN 50 AND 59.99 THEN 'Second CLass'
+				   WHEN marks BETWEEN 60 AND 79.99 THEN 'First CLass'
+				   WHEN marks BETWEEN 80 AND 100 THEN 'Distinction'
+				   ELSE 'Failed'
+				END as Grade
+			 From students ) as ss
+				where ss.grade = 'First Class';
+
+### Another Approach
+
     ALTER TABLE students
       ADD COLUMN Grade varchar(20) after marks;
 
@@ -50,6 +64,21 @@
         where Grade regexp 'First';
 
 -- b. How many students have obtained distinction? [table: students]
+
+	select *
+		from (  select *,
+			       CASE
+				   WHEN marks BETWEEN 40 AND 49.99 THEN 'Third CLass'
+				   WHEN marks BETWEEN 50 AND 59.99 THEN 'Second CLass'
+				   WHEN marks BETWEEN 60 AND 79.99 THEN 'First CLass'
+				   WHEN marks BETWEEN 80 AND 100 THEN 'Distinction'
+				   ELSE 'Failed'
+				END as Grade
+			 From students ) as ss
+				where ss.grade = 'First Class';
+
+### Another Approach
+
 
     select count(Grade) as 'Students graduated with Distinction'
       from students
