@@ -133,6 +133,14 @@
                   city regexp 'a$|e$|i$|o$|u$'
           GROUP BY city
             order by city;
+
+
+### Another approach
+
+	select distinct city
+		FROM assignment.station
+			where city regexp '^[aioue].*[aeiou]$'
+					order by city;
                 
 -- c. Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates
 
@@ -141,15 +149,48 @@
         where city Not regexp '^a|^e|^i|^o|^u'
           GROUP BY city
             order by city;
+
+### Another approach
+
+	select distinct city
+		FROM station
+			where city regexp '^[^aeiou]'
+					order by city;
 			
 -- d. Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates. [table: station]
 
-    select city
-      FROM station
-        where city not regexp '^a|^e|^i|^o|^u' AND
-                  city not regexp 'a$|e$|i$|o$|u$'
-          GROUP BY city
-            order by city;
+        
+	select distinct city
+		FROM station
+			where city regexp '^[^aeiou]|.*[^aeiou]$';
+
+### Another approach
+
+	select distinct city
+		FROM station
+			where city not regexp '^a|^e|^i|^o|^u' OR
+		      city not regexp 'a$|e$|i$|o$|u$';
+
+# Another Approach
+
+	SELECT DISTINCT(city) 
+		FROM Station 
+			WHERE LEFT(city, 1) not in ("a","e","i","o","u") 
+						 OR 
+			      RIGHT(city, 1) not in ("a","e","i","o","u");
+
+-- e. Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.
+
+	select distinct city
+		FROM station
+			where city regexp '^[^aeiou].*[^aeiou]$';
+
+### Another approach
+
+	select distinct city
+		FROM station
+			where city not regexp '^[aeiou].*[aeiou]$';
+
 
 ## 6. Write a query that prints a list of employee names having a salary greater than $2000 per month who have been employed for less than 36 months. Sort your result by descending order of salary. [table: emp]
 
